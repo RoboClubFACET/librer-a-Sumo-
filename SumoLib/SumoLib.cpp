@@ -101,3 +101,26 @@ void Motor::Encender(int pwm){
 	digitalWrite(_pin_negativo, LOW);
 	analogWrite(_pin_pwm, pwm);
 }
+
+void Sumo::Sumo(SumoConfig _config) : izq(_config.motorIzqPos, _config.motorIzqNeg), 
+                                      der(_config.motorDerPos, _config.motorDerNeg),
+                                      ir1(),
+                                      ir2(),
+                                      ultra1(pinUltraTrig1, pinUltraEcho1),
+                                      ultra2(pinUltraTrig2, pinUltraEcho2)
+{
+	this->pinBtnActivar = _config.pinBtnActivar;
+	this->pinBtnModo = _config.pinBtnModo;
+}
+
+void Sumo::avanzar(int pwm)
+{
+	izq.encender(pwm);
+	der.encender(pwm);
+}
+
+void Sumo::retroceder(int pwm)
+{
+	izq.retroceder(pwm);
+	der.retroceder(pwm);
+}

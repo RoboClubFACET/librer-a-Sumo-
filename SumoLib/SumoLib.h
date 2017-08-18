@@ -37,11 +37,13 @@ class SensorHC
 //Sensor infrarrojo TCRT5000
 class SensorTCRT{
 	public:
-		SensorTCRT(int pin, char tipoLectura);
-		
-		int SobreNegro();
+		SensorTCRT(int pin, int modo);
+
+		int (*lectura)();
 	
 	private:
+		int lecturaDigital();
+		int lecturaAnagolica();
 		int _lecturaSensor;
 };
 
@@ -49,17 +51,57 @@ class SensorTCRT{
 
 class Motor{
 	public:
-		Motor(int pin_positivo, int pin_negativo, int pin_pwm);
+		Motor(int pin_positivo, int pin_negativo);
 		
-		void Apagar();
+		void detener();
 		
-		void Encender();
+		void retroceder(int pwm);
 		
-		void Encender(int pwm);
+		void avanzar(int pwm);
+
+		void frenar(int pwm);
 		
 	private:
 		int _pin_positivo, _pin_negativo, _pin_pwm;
 };
 
+class Sumo{
+public:
+	Sumo(SumoConfig _config);
+	void avanzar(int pwm);
+	void retroceder(int pwm);
+	void girarSobreEje(int pwm);
+	void doblar(int pwm);
+	void detener();
+	void frenar(int pwm);
+	bool leerInfrarrojo(int sensorIr);
+	long leerUltrasonido(int sensorUltra);
+
+private:
+	int pinBtnActivar;
+	int pinBtnModo;
+	Motor izq;
+	Motor der;
+	SensorTCRT ir1;
+	SensorTCRT ir2;
+	SensorHC ultra1;
+	SensorHC ultra2;
+
+}
+
+struct SumoConfig{
+	int motorIzqPos;
+	int motorIzqNeg;
+	int motorDerPos;
+	int motorDerNeg;
+	int pinIr1;
+	int pinIr2;
+	int pinUltraTrig1;
+	int pinUltraEcho1;
+	int pinUltraTrig2;
+	int pinUltraEcho2;
+	int pinBtnActivar;
+	int pinBtnModo;
+}typedef SumoConfig;
 
 #endif
