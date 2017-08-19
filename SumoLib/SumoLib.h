@@ -8,16 +8,15 @@ class Led
 	public:
 		Led(int pin);
 		
-		void Blink();
+		void blink();
 		
-		void Blink(int miliSegundos);
+		void blink(int miliSegundos);
 		
-		void Encender();
+		void encender();
 		
-		void Apagar();
+		void apagar();
 	private:
 		int _pin;
-		char _tipoLectura;
 };
 
 //Sensor Ultra ultrasonido HC-SR04
@@ -65,31 +64,7 @@ class Motor{
 		int _pin_positivo, _pin_negativo, _pin_pwm;
 };
 
-class Sumo{
-public:
-	Sumo(SumoConfig _config);
-	void avanzar(int pwm);
-	void retroceder(int pwm);
-	void girarSobreEje(int pwm);
-	void doblar(int pwm);
-	void detener();
-	void frenar(int pwm);
-	bool leerInfrarrojo(int sensorIr);
-	long leerUltrasonido(int sensorUltra);
-
-private:
-	int pinBtnActivar;
-	int pinBtnModo;
-	Motor izq;
-	Motor der;
-	SensorTCRT ir1;
-	SensorTCRT ir2;
-	SensorHC ultra1;
-	SensorHC ultra2;
-
-}
-
-struct SumoConfig{
+typedef struct{
 	int motorIzqPos;
 	int motorIzqNeg;
 	int motorDerPos;
@@ -102,7 +77,32 @@ struct SumoConfig{
 	int pinUltraEcho2;
 	int pinBtnActivar;
 	int pinBtnModo;
-}typedef SumoConfig;
+}SumoConfig;
+
+class Sumo{
+public:
+	Sumo(SumoConfig _config);
+	void avanzar(int pwm);
+	void retroceder(int pwm);
+	void girarSobreEje(int pwm);
+	void doblar(int pwm);
+	void detener();
+	void frenar(int pwm);
+	bool leerInfrarrojo(int sensorIr);
+	long int leerUltrasonido(int sensorUltra);
+
+private:
+	int pinBtnActivar;
+	int pinBtnModo;
+	Motor izq;
+	Motor der;
+	SensorTCRT ir1;
+	SensorTCRT ir2;
+	SensorHC ultra1;
+	SensorHC ultra2;
+
+};
+
 
 #endif
 

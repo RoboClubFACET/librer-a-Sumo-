@@ -7,28 +7,28 @@ Led::Led(int pin)
 	pinMode(pin, OUTPUT);
 	_pin = pin;
 }
-//Led Parpadeo --CONTIENE UN DELAY
-void Led::Blink(){
+
+void Led::blink(){
 	digitalWrite(_pin,HIGH);
 	delay(500);
 	digitalWrite(_pin,LOW);
 	delay(500);
 }
-//Led Parpadeo sobrecarga(miliSegundos) --CONTIENE UN DELAY
-void Led::Blink(int miliSegundos)
+
+void Led::blink(int miliSegundos)
 {
 	digitalWrite(_pin,HIGH);
 	delay(miliSegundos);
 	digitalWrite(_pin,LOW);
 	delay(miliSegundos);
 }
-//Led Encender
-void Led::Encender()
+
+void Led::encender()
 {
 	digitalWrite(_pin,HIGH);
 }
-//Led Apagar
-void Led::Apagar()
+
+void Led::apagar()
 {
 	digitalWrite(_pin,LOW);
 }
@@ -41,7 +41,6 @@ SensorHC::SensorHC(int trig, int echo)
 	_trig = trig;
 	_echo = echo;
 }
-//Ultra Sonido RetornarDistancia
 long SensorHC::RetornarDistancia()
 {
 	digitalWrite(_trig, LOW); 
@@ -55,25 +54,26 @@ long SensorHC::RetornarDistancia()
 }
 
 //Sensor infrarrojo TCRT5000
-SensorTCRT::SensorTCRT(int pin, char tipoLectura)
+SensorTCRT::SensorTCRT(int pin, int modo)
 {	
 	pinMode(pin, INPUT);
-	if(tipoLectura == 'A'){
-		_lecturaSensor = analogRead(pin);
-	}else if(tipoLectura == 'D'){
-		_lecturaSensor = digitalRead(pin);
+	if(modo){
+		lectura = &lecturaDigital;
+	}else{
+		lectura = &lecturaAnagolica;
 	}
 }
-//Sensor Infrarrojo SobreNegro (Retorna 1 si esta sobre negro, de lo contrario 0)
-int SobreNegro(){
-	/*if(_lecturaSensor > 750){
-		return 1;
-	}else{
-		return 0;
-	}*/
+int lecturaDigital()
+{
+
 }
+int lecturaAnagolica(){
+
+}
+
 //Motor con pwm
-Motor::Motor(int pin_positivo, int pin_negativo, int pin_pwm){
+Motor::Motor(int pin_positivo, int pin_negativo)
+{
 	pinMode(pin_positivo, OUTPUT);
 	pinMode(pin_negativo, OUTPUT);
 	_pin_positivo = pin_positivo;
@@ -83,23 +83,31 @@ Motor::Motor(int pin_positivo, int pin_negativo, int pin_pwm){
 	digitalWrite(_pin_negativo, LOW);
 	analogWrite(_pin_pwm, 0);
 }
-//Motor Apagar
-void Motor::Apagar(){
+
+void Motor::detener()
+{
 	digitalWrite(_pin_positivo, LOW);
 	digitalWrite(_pin_negativo, LOW);
 	analogWrite(_pin_pwm, 0);
 }
-//Motor Encender
-void Motor::Encender(){
-	digitalWrite(_pin_positivo, HIGH);
-	digitalWrite(_pin_negativo, LOW);
-	analogWrite(_pin_pwm, 150);
+
+void Motor::retroceder(int pwm)
+{
+	digitalWrite(_pin_positivo, LOW);
+	digitalWrite(_pin_negativo, HIGH);
+	analogWrite(_pin_pwm, pwm);
 }
-//Motor Encender Sobrecarga(pwm)
-void Motor::Encender(int pwm){
+
+void Motor::avanzar(int pwm)
+{
 	digitalWrite(_pin_positivo, HIGH);
 	digitalWrite(_pin_negativo, LOW);
 	analogWrite(_pin_pwm, pwm);
+}
+
+void Motor::frenar(int pwm)
+{
+
 }
 
 void Sumo::Sumo(SumoConfig _config) : izq(_config.motorIzqPos, _config.motorIzqNeg), 
@@ -115,12 +123,44 @@ void Sumo::Sumo(SumoConfig _config) : izq(_config.motorIzqPos, _config.motorIzqN
 
 void Sumo::avanzar(int pwm)
 {
-	izq.encender(pwm);
-	der.encender(pwm);
+	izq.avanzar(pwm);
+	der.avanzar(pwm);
 }
 
 void Sumo::retroceder(int pwm)
 {
 	izq.retroceder(pwm);
 	der.retroceder(pwm);
+}
+
+void Sumo::girarSobreEje(int pwm)
+{
+
+}
+
+void Sumo::doblar(int pwm)
+{
+
+}
+
+void Sumo::detener()
+{
+	izq.detener();
+	der.detener();
+}
+
+void Sumo::frenar(int pwm)
+{
+	izq.frenar(pwm);
+	der.frenar(pwm);
+}
+
+bool Sumo::leerInfrarrojo(int sensorIr)
+{
+	
+}
+
+long int Sumo::Ultrasonido(int sensorUltra)
+{
+	
 }
