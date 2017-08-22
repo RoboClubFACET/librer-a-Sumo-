@@ -7,13 +7,13 @@ class Led
 {
 	public:
 		Led(int pin);
-		
+
 		void blink();
-		
+
 		void blink(int miliSegundos);
-		
+
 		void encender();
-		
+
 		void apagar();
 	private:
 		int _pin;
@@ -22,7 +22,7 @@ class Led
 //Sensor Ultra ultrasonido HC-SR04
 class SensorHC
 {
-	public: 
+	public:
 		SensorHC(int trig, int echo);
 
 		long RetornarDistancia();
@@ -39,7 +39,7 @@ class SensorTCRT{
 		SensorTCRT(int pin, int modo);
 
 		int (*lectura)();
-	
+
 	private:
 		int lecturaDigital();
 		int lecturaAnagolica();
@@ -50,16 +50,16 @@ class SensorTCRT{
 
 class Motor{
 	public:
-		Motor(int pin_positivo, int pin_negativo);
-		
+		Motor(int pin_positivo, int pin_negativo, int pin_pwm);
+
 		void detener();
-		
+
 		void retroceder(int pwm);
-		
+
 		void avanzar(int pwm);
 
 		void frenar(int pwm);
-		
+
 	private:
 		int _pin_positivo, _pin_negativo, _pin_pwm;
 };
@@ -67,8 +67,10 @@ class Motor{
 typedef struct{
 	int motorIzqPos;
 	int motorIzqNeg;
+	int pinPwmIzq;
 	int motorDerPos;
 	int motorDerNeg;
+	int pinPwmDer;
 	int pinIr1;
 	int pinIr2;
 	int pinUltraTrig1;
@@ -89,7 +91,7 @@ public:
 	void detener();
 	void frenar(int pwm);
 	bool leerInfrarrojo(int sensorIr);
-	long int leerUltrasonido(int sensorUltra);
+	float leerUltrasonido(int sensorUltra);
 
 private:
 	int pinBtnActivar;

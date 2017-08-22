@@ -43,19 +43,19 @@ SensorHC::SensorHC(int trig, int echo)
 }
 long SensorHC::RetornarDistancia()
 {
-	digitalWrite(_trig, LOW); 
+	digitalWrite(_trig, LOW);
 	delayMicroseconds(2);
-  	digitalWrite(_trig, HIGH); 
+  	digitalWrite(_trig, HIGH);
 	delayMicroseconds(10);
 	digitalWrite(_trig, LOW);
-	_duration = pulseIn(_echo, HIGH); 
+	_duration = pulseIn(_echo, HIGH);
 	_distance= _duration*0.034/2;	//Centimetros
 	return (_distance);
 }
 
 //Sensor infrarrojo TCRT5000
 SensorTCRT::SensorTCRT(int pin, int modo)
-{	
+{
 	pinMode(pin, INPUT);
 	if(modo){
 		lectura = &lecturaDigital;
@@ -72,7 +72,7 @@ int lecturaAnagolica(){
 }
 
 //Motor con pwm
-Motor::Motor(int pin_positivo, int pin_negativo)
+Motor::Motor(int pin_positivo, int pin_negativo, int pin_pwm)
 {
 	pinMode(pin_positivo, OUTPUT);
 	pinMode(pin_negativo, OUTPUT);
@@ -110,12 +110,12 @@ void Motor::frenar(int pwm)
 
 }
 
-void Sumo::Sumo(SumoConfig _config) : izq(_config.motorIzqPos, _config.motorIzqNeg), 
-                                      der(_config.motorDerPos, _config.motorDerNeg),
-                                      ir1(),
-                                      ir2(),
-                                      ultra1(pinUltraTrig1, pinUltraEcho1),
-                                      ultra2(pinUltraTrig2, pinUltraEcho2)
+void Sumo::Sumo(SumoConfig _config) : izq(_config.motorIzqPos, _config.motorIzqNeg, _config.pinPwmIzq),
+                                      der(_config.motorDerPos, _config.motorDerNeg, _config.pinPwmDer),
+                                      ir1(_config.pinIr1, 0),
+                                      ir2(_config.pinIr2, 0),
+                                      ultra1(_config.pinUltraTrig1, _config.pinUltraEcho1),
+                                      ultra2(_config.pinUltraTrig2, _config.pinUltraEcho2)
 {
 	this->pinBtnActivar = _config.pinBtnActivar;
 	this->pinBtnModo = _config.pinBtnModo;
@@ -157,10 +157,10 @@ void Sumo::frenar(int pwm)
 
 bool Sumo::leerInfrarrojo(int sensorIr)
 {
-	
+
 }
 
-long int Sumo::Ultrasonido(int sensorUltra)
+float Sumo::leerUltrasonido(int sensorUltra)
 {
-	
+
 }
