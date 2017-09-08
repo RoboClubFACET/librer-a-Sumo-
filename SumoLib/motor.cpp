@@ -33,11 +33,11 @@ void Motor::retroceder(int pwm)
 {
 
   // Direccionar el motor para avanzar.
-	digitalWrite(_pin_positivo, LOW);
-	digitalWrite(_pin_negativo, HIGH);
+	digitalWrite(pin_positivo_, LOW);
+	digitalWrite(pin_negativo_, HIGH);
 
   // Seleccionar la velocidad.
-	analogWrite(_pin_pwm, pwm);
+	analogWrite(pin_pwm_, pwm);
 }
 
 void Motor::puntoMuerto(int pwm)
@@ -48,9 +48,9 @@ void Motor::puntoMuerto(int pwm)
 void Motor::detener()
 {
   // Direccionar el motor para detener bruscamente.
-	digitalWrite(_pin_positivo, LOW);
-	digitalWrite(_pin_negativo, LOW);
+	digitalWrite(pin_positivo_, LOW);
+	digitalWrite(pin_negativo_, LOW);
 
   // Seleccionar la velocidad.
-	analogWrite(_pin_pwm, 0);
+	analogWrite(pin_pwm_, 0);
 }

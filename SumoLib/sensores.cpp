@@ -28,7 +28,7 @@ long Hcsr04::RetornarDistancia()
 
   // Leer tiempo de vuelo y convertirlo a centimetros
 	duration_ = pulseIn(echo_, HIGH);
-	distance_ = _duration_ * 0.034 / 2;	//Centimetros
+	distance_ = duration_ * 0.034 / 2;	//Centimetros
 	return (distance_);
 }
 
@@ -39,14 +39,15 @@ Tcrt5000::Tcrt5000(int pin, int modo)
 {
   // El pin del sensor es una entrada.
   pinMode(pin, INPUT);
-
+  /*
 	if(modo){
     // Modo 1
-		lectura = &lecturaDigital;
+		lectura = &Tcrt5000::lecturaDigital;
 	}else{
     // Modo 0
-		lectura = &lecturaAnagolica;
+		lectura = &Tcrt5000::lecturaAnagolica;
 	}
+  */
 
   // Guardar valor para futuro uso.
   pin_ = pin;

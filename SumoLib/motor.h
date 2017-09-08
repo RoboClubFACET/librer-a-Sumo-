@@ -32,15 +32,15 @@ class Motor {
     void retroceder(int pwm);
 
     /// Dejar el motor en punto muerto.
-    void puntoMuerto();
+    void puntoMuerto(int pwm);
 
     /// Detener el motor bruscamente.
     void detener();
 
 	private:
 		int pin_positivo_; /*< El pin positivo de direccionamiento. */
-    int pin_negativo_; /*< El pin negativo de direccionamiento. */
-    int pin_pwm_;      /*< El pin del PWM. */
+        int pin_negativo_; /*< El pin negativo de direccionamiento. */
+        int pin_pwm_;      /*< El pin del PWM. */
 };
 
 #endif

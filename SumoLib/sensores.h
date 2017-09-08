@@ -24,9 +24,9 @@ class Hcsr04 {
 
 	private:
 		int trig_;       /**< El pin adonde esta conectado el trigger. */
-    int echo_;       /**< El pin adonde esta conectado el echo. */
+        int echo_;       /**< El pin adonde esta conectado el echo. */
 		long duration_;  /**< El tiempo de vuelo de la señal ultrasonica. */
-    long distance_;  /**< La distancia al primer objecto detectado en cm. */
+        long distance_;  /**< La distancia al primer objecto detectado en cm. */
 };
 
 ///Clase para el sensor TCRT5000
@@ -50,7 +50,7 @@ class Tcrt5000 {
     * @return En modo digital retorna un 0 o 1 dependiendo de la intensidad de
     * reflejo. En modo analogico retorna la intensidad de reflejo en 0 y 1024.
     */
-		int (*lectura)();
+		//int (*lectura)();
 
 	private:
 

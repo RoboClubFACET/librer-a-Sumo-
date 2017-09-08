@@ -46,7 +46,6 @@ public:
 	void girarSobreEje(int pwm);
 	void doblar(int pwm);
 	void detener();
-	void frenar(int pwm);
 	bool leerInfrarrojo(int sensorIr);
 	float leerUltrasonido(int sensorUltra);
 
