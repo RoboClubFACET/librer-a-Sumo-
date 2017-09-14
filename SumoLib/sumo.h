@@ -43,11 +43,11 @@ public:
 	*/
 	void avanzar(int pwm);
 	void retroceder(int pwm);
-	void girarSobreEje(int pwm);
-	void doblar(int pwm);
+	void girarSobreEje(int pwm, int direccion);
+	void doblar(int pwm, int direccion);
 	void detener();
 	bool leerInfrarrojo(int sensorIr);
-	float leerUltrasonido(int sensorUltra);
+	long leerUltrasonido(int sensorUltra);
 
 private:
 	int pinBtnActivar;

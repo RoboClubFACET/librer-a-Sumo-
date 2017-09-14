@@ -24,14 +24,30 @@ void Sumo::retroceder(int pwm)
 	der.retroceder(pwm);
 }
 
-void Sumo::girarSobreEje(int pwm)
-{
-
+void Sumo::girarSobreEje(int pwm, int direccion)
+{	
+	if(direccion){
+		// gira hacia la izquierda
+		izq.detener();
+		der.avanzar(75);
+	}else{
+		// gira hacia la derecha
+		izq.avanzar(75);
+		der.detener();
+	}
 }
 
-void Sumo::doblar(int pwm)
+void Sumo::doblar(int pwm, int direccion)
 {
-
+	if(direccion){
+		// dobla hacia la izquierda
+		izq.avanzar(50);
+		der.avanzar(75);
+	}else{
+		// dobla hacia la derecha
+		izq.avanzar(75);
+		der.avanzar(50);
+	}
 }
 
 void Sumo::detener()
@@ -45,7 +61,13 @@ bool Sumo::leerInfrarrojo(int sensorIr)
 
 }
 
-float Sumo::leerUltrasonido(int sensorUltra)
+long Sumo::leerUltrasonido(int sensorUltra)
 {
-
+	if(sensorUltra == 1){
+		// retorna lectura de ultra1
+		return ultra1.retornarDistancia();
+	}else if(sensorUltra == 2){
+		// retorna lectura de ultra2
+		return ultra2.retornarDistancia();
+	}
 }
