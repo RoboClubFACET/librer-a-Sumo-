@@ -4,7 +4,7 @@
 /*
 * HC-SR04
 */
-Hcsr04::Hcsr04(int trig, int echo)
+Ultrasonido::Ultrasonido(int trig, int echo)
 {
   // El trigger es salida.
   pinMode(trig, OUTPUT);
@@ -17,7 +17,7 @@ Hcsr04::Hcsr04(int trig, int echo)
 	echo_ = echo;
 }
 
-long Hcsr04::RetornarDistancia()
+long Ultrasonido::retornarDistancia()
 {
   // Activar el trigger.
   digitalWrite(trig_, LOW);
@@ -35,7 +35,7 @@ long Hcsr04::RetornarDistancia()
 /*
 * TCRT5000
 */
-Tcrt5000::Tcrt5000(int pin, int modo)
+Infrarrojo::Infrarrojo(int pin, int modo)
 {
   // El pin del sensor es una entrada.
   pinMode(pin, INPUT);
@@ -53,12 +53,12 @@ Tcrt5000::Tcrt5000(int pin, int modo)
   pin_ = pin;
 }
 
-int Tcrt5000::lecturaDigital()
+int Infrarrojo::lecturaDigital()
 {
   return digitalRead(pin_);
 }
 
-int Tcrt5000::lecturaAnagolica()
+int Infrarrojo::lecturaAnagolica()
 {
   return analogRead(pin_);
 }

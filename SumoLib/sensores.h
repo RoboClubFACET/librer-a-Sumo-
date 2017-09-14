@@ -6,7 +6,7 @@
 * La clase que define el funcionamiento del sensor ultrasonido HC-SR04. Permite
 * configurar los dos pins del sensor y retornar la distancia medida.
 */
-class Hcsr04 {
+class Ultrasonido {
 	public:
 
     /// Contructor
@@ -14,19 +14,19 @@ class Hcsr04 {
     * @param trig es el pin adonde esta conectado el tigger del HC-SR04.
     * @param echo es el pin adonde esta conectado el echo del HC-SR04.
     */
-		Hcsr04(int trig, int echo);
+		Ultrasonido(int trig, int echo);
 
     /// Retornar la distancia medida por el HC-SR04 en cm.
     /**
     * @return La distancia en cm.
     */
-		long RetornarDistancia();
+		long retornarDistancia();
 
 	private:
 		int trig_;       /**< El pin adonde esta conectado el trigger. */
-        int echo_;       /**< El pin adonde esta conectado el echo. */
+    int echo_;       /**< El pin adonde esta conectado el echo. */
 		long duration_;  /**< El tiempo de vuelo de la señal ultrasonica. */
-        long distance_;  /**< La distancia al primer objecto detectado en cm. */
+    long distance_;  /**< La distancia al primer objecto detectado en cm. */
 };
 
 ///Clase para el sensor TCRT5000
@@ -35,7 +35,7 @@ class Hcsr04 {
 * configurar los dos pins del sensor y el modo de funcionamiento
 * (analogico/digtal).
 */
-class Tcrt5000 {
+class Infrarrojo {
 	public:
 
     /// Contructor
@@ -43,7 +43,7 @@ class Tcrt5000 {
     * @param trig es el pin adonde esta conectado el tigger del HC-SR04.
     * @param echo es el pin adonde esta conectado el echo del HC-SR04.
     */
-		Tcrt5000(int pin, int modo);
+		Infrarrojo(int pin, int modo);
 
     /// Retornar la intensidad de reflejo del TCRT5000.
     /**

@@ -54,10 +54,10 @@ private:
 	int pinBtnModo;
 	Motor izq;
 	Motor der;
-	Tcrt5000 ir1;
-	Tcrt5000 ir2;
-	Hcsr04 ultra1;
-	Hcsr04 ultra2;
+	Infrarrojo ir1;
+	Infrarrojo ir2;
+	Ultrasonido ultra1;
+	Ultrasonido ultra2;
 
 };
 
