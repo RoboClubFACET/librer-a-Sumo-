@@ -4,6 +4,13 @@
 /*
 * HC-SR04
 */
+
+Ultrasonido::Ultrasonido()
+{
+  trig_ = 0;
+  echo_ = 0;
+}
+
 Ultrasonido::Ultrasonido(int trig, int echo)
 {
   // El trigger es salida.
@@ -15,6 +22,19 @@ Ultrasonido::Ultrasonido(int trig, int echo)
   // Guardar valores para futuro uso.
   trig_ = trig;
 	echo_ = echo;
+}
+
+void Ultrasonido::init(int trig, int echo)
+{
+    // El trigger es salida.
+  pinMode(trig, OUTPUT);
+
+  // El echo es entrada.
+  pinMode(echo, INPUT);
+
+  // Guardar valores para futuro uso.
+  trig_ = trig;
+  echo_ = echo;
 }
 
 long Ultrasonido::retornarDistancia()
@@ -35,6 +55,12 @@ long Ultrasonido::retornarDistancia()
 /*
 * TCRT5000
 */
+Infrarrojo::Infrarrojo()
+{
+  pin_= 0;
+  lecturaSensor_ = 0;
+}
+
 Infrarrojo::Infrarrojo(int pin, int modo)
 {
   // El pin del sensor es una entrada.

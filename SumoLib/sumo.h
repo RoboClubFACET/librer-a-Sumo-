@@ -30,12 +30,17 @@ typedef struct {
 class Sumo {
 public:
 
+	Sumo();
+
 	/// Contructor
 	/**
 	* @param config es una estructura que define todos los pins de entrada/salida
 	* para los sensores y motores.
 	*/
 	Sumo(SumoConfig config);
+
+
+	void init(SumoConfig config);
 
 	/// Retornar la distancia medida por el HC-SR04 en cm.
 	/**

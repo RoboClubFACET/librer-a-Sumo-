@@ -10,6 +10,8 @@
 class Motor {
 	public:
 
+    Motor();
+
     /// Contructor
     /**
     * @param pin_positivo es el pin positivo para direccionamiento.
@@ -17,7 +19,10 @@ class Motor {
     * @param pin_pwm es el pin del PWM para controlar la velocidad del motor.
     * Valores validos son entre 0 y 255.
     */
-		Motor(int pin_positivo, int pin_negativo, int pin_pwm);
+	Motor(int pin_positivo, int pin_negativo, int pin_pwm);
+
+
+    void init(int pin_positivo, int pin_negativo, int pin_pwm);
 
     /// Girar el motor en modo avanzar.
     /**

@@ -9,18 +9,22 @@
 class Ultrasonido {
 	public:
 
+    Ultrasonido();
+
     /// Contructor
     /**
     * @param trig es el pin adonde esta conectado el tigger del HC-SR04.
     * @param echo es el pin adonde esta conectado el echo del HC-SR04.
     */
-		Ultrasonido(int trig, int echo);
+	Ultrasonido(int trig, int echo);
+
+    void init(int trig, int echo);
 
     /// Retornar la distancia medida por el HC-SR04 en cm.
     /**
     * @return La distancia en cm.
     */
-		long retornarDistancia();
+	long retornarDistancia();
 
 	private:
 		int trig_;       /**< El pin adonde esta conectado el trigger. */
@@ -38,6 +42,8 @@ class Ultrasonido {
 class Infrarrojo {
 	public:
 
+    Infrarrojo();
+
     /// Contructor
     /**
     * @param trig es el pin adonde esta conectado el tigger del HC-SR04.
@@ -51,6 +57,8 @@ class Infrarrojo {
     * reflejo. En modo analogico retorna la intensidad de reflejo en 0 y 1024.
     */
 		//int (*lectura)();
+
+    void init(int trig, int echo);
 
 	private:
 
@@ -68,7 +76,7 @@ class Infrarrojo {
 		int lecturaAnagolica();
 
     int pin_;
-		int lecturaSensor_; /**< Intensidad de reflejo medida por el sensor. */
+	int lecturaSensor_; /**< Intensidad de reflejo medida por el sensor. */
 };
 
 #endif
